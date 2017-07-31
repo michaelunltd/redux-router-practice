@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form'; 
+import { Field, reduxForm } from 'redux-form';
 
 class PostsNew extends Component {
     renderField(field) {
@@ -12,28 +12,37 @@ class PostsNew extends Component {
                     placeholder={ `Enter ${field.label} here` }
                     {...field.input}
                 />
+                {field.meta.touched ? field.meta.error : ''}
             </div>
         );
     }
 
+    onSubmit(values) {
+        console.log(values);
+    }
+
     render() {
+        const { handleSubmit } = this.props;
+
         return (
-            <form>
-                <Field 
+            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                <Field
                     label="Title"
                     name="title"
                     component={this.renderField}
                 />
-                <Field 
+                <Field
                     label="Categories"
                     name="categories"
                     component={this.renderField}
                 />
-                <Field 
+                <Field
                     label="Post Content"
                     name="content"
                     component={this.renderField}
                 />
+                <button type="submit" className="btn btn-primary">Submit</button>
+
             </form>
         )
     }
@@ -43,9 +52,9 @@ function validate(values) {
     // console.log(values) -> { title: 'asdf', categories: 'asdf', content: 'asdf' }
     const errors = {};
 
-    if (values.title.length < 3) {
-        errors.title = 'Title must be at least 3 characters';
-    }
+    // if (values.title.length < 3) {
+    //     errors.title = 'Title must be at least 3 characters';
+    // }
 
     // Validate the input from 'values'
     if (!values.title) {
