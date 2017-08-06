@@ -31,6 +31,6 @@ export function fetchPost(id) {
 
     return {
         type: FETCH_POST,
-        paylaod: request
+        payload: request
     }
 }

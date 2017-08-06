@@ -1,4 +1,8 @@
+const webpack = require('webpack');
+
 module.exports = {
+  devtool: 'eval-source-map',
+  debug: true,
   entry: [
     './src/index.js'
   ],
@@ -27,8 +31,5 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     contentBase: './'
-  },
-  debug: true,
-  devtool: true,
-  devtool: 'source-map'
+  }
 };
