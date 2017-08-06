@@ -19,8 +19,16 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true
+    })
+  ],
   devServer: {
     historyApiFallback: true,
     contentBase: './'
-  }
+  },
+  debug: true,
+  devtool: true,
+  devtool: 'source-map'
 };
